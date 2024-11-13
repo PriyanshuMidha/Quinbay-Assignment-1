@@ -1,0 +1,72 @@
+import java.util.Date;
+
+public class Employee {
+    private String id;
+    private String name;
+    private int age;
+    private Date dateOfJoining;
+
+    public Employee(String id, String name, int age, Date dateOfJoining) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.dateOfJoining = dateOfJoining;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Date getDateOfJoining() {
+        return dateOfJoining;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{id='" + id + "', name='" + name + "', age=" + age + ", dateOfJoining=" + dateOfJoining + "}";
+    }
+}
+
+import java.util.Date;
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating a MyList for Employee objects
+        MyList<Employee> employeeList = new MyList<>();
+
+        // Adding Employee objects
+        employeeList.add(new Employee("E001", "Alice", 30, new Date(2020 - 1900, 1, 15)));
+        employeeList.add(new Employee("E002", "Bob", 28, new Date(2021 - 1900, 5, 10)));
+        employeeList.add(new Employee("E003", "Charlie", 35, new Date(2019 - 1900, 10, 20)));
+
+        System.out.println("Employee List Size: " + employeeList.size());
+
+        // Display all employees
+        for (int i = 0; i < employeeList.size(); i++) {
+            System.out.println("Employee at index " + i + ": " + employeeList.get(i));
+        }
+
+        // Deleting an employee by index
+        employeeList.deleteByIndex(1);
+        System.out.println("\nAfter deleting employee at index 1:");
+        for (int i = 0; i < employeeList.size(); i++) {
+            System.out.println("Employee at index " + i + ": " + employeeList.get(i));
+        }
+
+        // Deleting an employee by value
+        employeeList.deleteByValue(new Employee("E003", "Charlie", 35, new Date(2019 - 1900, 10, 20)));
+        System.out.println("\nAfter deleting employee with id 'E003':");
+        for (int i = 0; i < employeeList.size(); i++) {
+            System.out.println("Employee at index " + i + ": " + employeeList.get(i));
+        }
+    }
+}
+

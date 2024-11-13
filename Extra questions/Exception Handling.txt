@@ -1,0 +1,29 @@
+public class SingleDigitException extends Exception {
+    public SingleDigitException(String message) {
+        super(message);
+    }
+}
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a single-digit number: ");
+        int number = scanner.nextInt();
+
+        try {
+            checkSingleDigit(number);
+            System.out.println("You entered a single-digit number: " + number);
+        } catch (SingleDigitException e) {
+            System.out.println("Exception: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
+    }
+
+    public static void checkSingleDigit(int number) throws SingleDigitException {
+        if (number < -9 || number > 9) {
+            throw new SingleDigitException("The number has more than one digit.");
+        }
+    }
+}

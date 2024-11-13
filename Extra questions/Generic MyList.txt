@@ -1,0 +1,112 @@
+public class MyList<T> {
+    private T[] data;
+    private int size;
+
+    @SuppressWarnings("unchecked")
+    public MyList() {
+        data = (T[]) new Object[100];
+        size = 0;
+    }
+
+    public void add(T value) {
+        if (size == data.length) {
+            resize(data.length * 2);
+        }
+        data[size++] = value;
+    }
+
+    public void deleteByIndex(int index) {
+        if (index < 0 || index >= size) return;
+        for (int i = index; i < size - 1; i++) {
+            data[i] = data[i + 1];
+        }
+        data[--size] = null;
+        if (size > 0 && size == data.length / 4) {
+            resize(data.length / 2);
+        }
+    }
+
+    public void deleteByValue(T value) {
+        for (int i = 0; i < size; i++) {
+            if (data[i].equals(value)) {
+                deleteByIndex(i);
+                return;
+            }
+        }
+    }
+
+    public T get(int index) {
+        if (index < 0 || index >= size) throw new IndexOutOfBoundsException("Index out of bounds");
+        return data[index];
+    }
+
+    private void resize(int newCapacity) {
+        @SuppressWarnings("unchecked")
+        T[] newData = (T[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newData[i] = data[i];
+        }
+        data = newData;
+    }
+
+    public int size() {
+        return size;
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        // Integer List
+        MyList<Integer> intList = new MyList<>();
+        intList.add(10);
+        intList.add(20);
+        intList.add(30);
+        System.out.println("Integer List Size: " + intList.size());
+        System.out.println("Element at index 1: " + intList.get(1));
+        intList.deleteByIndex(1);
+        intList.deleteByValue(30);
+
+        for (int i = 0; i < intList.size(); i++) {
+            System.out.println("Integer List Element at index " + i + ": " + intList.get(i));
+        }
+
+        // String List
+        MyList<String> strList = new MyList<>();
+        strList.add("Apple");
+        strList.add("Banana");
+        strList.add("Cherry");
+        System.out.println("String List Size: " + strList.size());
+        strList.deleteByValue("Banana");
+
+        for (int i = 0; i < strList.size(); i++) {
+            System.out.println("String List Element at index " + i + ": " + strList.get(i));
+        }
+
+        // Custom Class List
+        MyList<Person> personList = new MyList<>();
+        personList.add(new Person("John", 25));
+        personList.add(new Person("Alice", 30));
+        personList.add(new Person("Bob", 22));
+        System.out.println("Person List Size: " + personList.size());
+
+        for (int i = 0; i < personList.size(); i++) {
+            System.out.println("Person List Element at index " + i + ": " + personList.get(i));
+        }
+    }
+}
+
+class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + age + " years)";
+    }
+}

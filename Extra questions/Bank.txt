@@ -1,0 +1,32 @@
+public class Bank {
+    protected double defaultTransactionCharge = 10.0;
+
+    public double getTransactionCharge() {
+        return defaultTransactionCharge;
+    }
+}
+public class ICICI extends Bank {
+    private double additionalCharge = 2.0;
+
+    @Override
+    public double getTransactionCharge() {
+        return defaultTransactionCharge + additionalCharge;
+    }
+}
+public class HDFC extends Bank {
+    private double additionalCharge = 3.5;
+
+    @Override
+    public double getTransactionCharge() {
+        return defaultTransactionCharge + additionalCharge;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Bank iciciBank = new ICICI();
+        Bank hdfcBank = new HDFC();
+
+        System.out.println("ICICI Transaction Charge: " + iciciBank.getTransactionCharge());
+        System.out.println("HDFC Transaction Charge: " + hdfcBank.getTransactionCharge());
+    }
+}
