@@ -1,0 +1,29 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+       Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine().trim();  // Trim leading and trailing spaces
+        
+        // Check for empty input after trimming
+        if (input.isEmpty()) {
+            System.out.println(0);
+            return;
+        }
+        
+        // Split the input string into tokens based on non-alphabetic characters
+        String[] tokens = input.split("[^A-Za-z]+");
+        
+        // Print the number of tokens
+        System.out.println(tokens.length);
+        
+        // Print each token on a new line
+        for (String token : tokens) {
+            System.out.println(token);
+        }
+        
+        scanner.close();
+    }
+    }

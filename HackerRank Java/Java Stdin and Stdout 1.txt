@@ -1,0 +1,17 @@
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int myInt = scanner.nextInt();
+        int my = scanner.nextInt();
+        int m = scanner.nextInt();
+        scanner.close();
+
+        System.out.println( myInt);
+        System.out.println( my);
+        System.out.println( m);
+        
+    }
+}

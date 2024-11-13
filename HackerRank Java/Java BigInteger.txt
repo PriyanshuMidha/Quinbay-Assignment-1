@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static void main(String[] args) {
+        // Input
+        Scanner sc = new Scanner(System.in);
+        
+        // Read the two large numbers as strings
+        String num1 = sc.nextLine();
+        String num2 = sc.nextLine();
+        
+        // Convert the strings to BigInteger
+        BigInteger n1 = new BigInteger(num1);
+        BigInteger n2 = new BigInteger(num2);
+        
+        // Perform addition and multiplication
+        BigInteger sum = n1.add(n2);
+        BigInteger product = n1.multiply(n2);
+        
+        // Output the results
+        System.out.println(sum);
+        System.out.println(product);
+        
+        // Close the scanner
+        sc.close();
+    }
+}

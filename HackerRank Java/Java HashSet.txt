@@ -1,0 +1,46 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+ public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int t = s.nextInt();
+        String [] pair_left = new String[t];
+        String [] pair_right = new String[t];
+        
+        for (int i = 0; i < t; i++) {
+            pair_left[i] = s.next();
+            pair_right[i] = s.next();
+        }
+             // Create a HashSet to store unique pairs
+        Set<String> uniquePairs = new HashSet<>();
+        
+        // Process each pair
+        for (int i = 0; i < t; i++) {
+            // Sort the pair lexicographically to ensure order doesn't matter
+            String left = pair_left[i];
+            String right = pair_right[i];
+            if (left.compareTo(right) > 0) {
+                // Swap if left is lexicographically greater than right
+                String temp = left;
+                left = right;
+                right = temp;
+            }
+            
+            // Combine the pair into a single string to represent the pair
+            String pair = left + " " + right;
+            
+            // Add the sorted pair to the set
+            uniquePairs.add(pair);
+            
+            // Print the current number of unique pairs
+            System.out.println(uniquePairs.size());
+        }
+        
+        s.close();
+    }
+}

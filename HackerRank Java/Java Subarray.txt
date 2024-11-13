@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+           Scanner scanner = new Scanner(System.in);
+int n = scanner.nextInt();  // Length of the array
+        int[] arr = new int[n];     // Initialize the array
+
+        // Read array elements
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+
+        int negativeCount = 0;
+
+        // Iterate over all possible starting points for subarrays
+        for (int i = 0; i < n; i++) {
+            int sum = 0; // Initialize sum for the subarray starting at index i
+
+            // Iterate over all possible ending points for subarrays starting at i
+            for (int j = i; j < n; j++) {
+                sum += arr[j]; // Add current element to sum
+
+                // Check if the current subarray sum is negative
+                if (sum < 0) {
+                    negativeCount++;
+                }
+            }
+        }
+
+        // Print the total number of negative subarrays
+        System.out.println(negativeCount);
+
+        scanner.close();
+    }
+}
